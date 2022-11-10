@@ -1,3 +1,5 @@
+//Final version
+
 let store = {
     user: { name: "Explorer" },
     apod: '',

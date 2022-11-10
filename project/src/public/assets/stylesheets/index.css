@@ -33,10 +33,11 @@ header {
 
 .roverBtn {
   font-size: 1.3rem;
-  margin-right: 3rem;
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
   padding: 0.9rem 1.7rem 0.9rem 1.7rem;
   background-color: rgba(68, 214, 76, 0.864);
-  border: none;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.299);  border: none;
   border-radius: 1.5rem;
   transition-duration: 0.7s;
 }
@@ -56,23 +57,66 @@ img {
   height: 28rem;
 }
 
-footer {
-  /* footer styles */
+p {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+/* -------------------   MOBILE   -------------- */
+@media (min-width: 250px) {
+  .buttons{
+    flex-direction: column;
+  }
+
+  .roverBtn {
+    margin-top: 0.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.7rem 0 0.7rem 0;
+  }
+
+  img {
+    height: 20rem;
+  }
 }
 
 /* -------------------  TABLET  --------------------- */
 @media (min-width: 768px) {
-  /* use mobile */
+  .buttons{
+    flex-direction: row;
+  }
+
+  .roverBtn {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    padding: 0.9rem 1.7rem 0.9rem 1.7rem;
+  }
+
+  #choose {
+    font-size: 1.8rem;
+  }
+
+  img {
+    height: 26rem;
+  }
 }
 
 /* -------------------  DESKTOP  -------------------- */
 
-@media (min-width: 1224px) {
-  /* use mobile */
+@media (min-width: 1024px) {
+  .roverBtn {
+    font-size: 1.3rem;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+  }
+
+  #choose {
+    font-size: 2rem;
+  }
+
+  img {
+    height: 33rem;
+  }
 }
 
-/* -------------------  LARGE SCREENS  -------------- */
-
-@media (min-width: 1824px) {
-  /* use mobile */
-}
