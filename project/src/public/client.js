@@ -4,6 +4,8 @@ let store = {
     rovers: ['Curiosity', 'Opportunity', 'Spirit'],
 }
 
+let choosedRover = ["spirit"]
+
 // add our markup to the page
 const root = document.getElementById('root')
 
@@ -28,15 +30,19 @@ const App = (state) => {
             <section>
                 <p id="choose">Choose a rover</p>
                 <div class="buttons">
-                    <button class="roverBtn">${store.rovers[0]}</button>
-                    <button class="roverBtn">${store.rovers[1]}</button>
-                    <button class="roverBtn">${store.rovers[2]}</button>
+                    <button class="roverBtn" onclick="btnClick('${store.rovers[0]}')">${store.rovers[0]}</button>
+                    <button class="roverBtn"  onclick="btnClick('${store.rovers[1]}')">${store.rovers[1]}</button>
+                    <button class="roverBtn"  onclick="btnClick('${store.rovers[2]}')">${store.rovers[2]}</button>
                 </div>
                 ${ImageOfTheDay(apod)}
             </section>
         </main>
         <footer></footer>
     `
+}
+
+function btnClick(rover){
+    getImageOfTheDay(rover)
 }
 
 // listening for load event because page should load before any JS is called
@@ -75,16 +81,17 @@ const ImageOfTheDay = (apod) => {
     // check if the photo of the day is actually type video!
     if (apod.media_type === "video") {
         return (`
-            <p>See today's featured video <a href="${apod.url}">here</a></p>
-            <p>${apod.title}</p>
-            <p>${apod.explanation}</p>
+            <p>Sorry we do not support videos</p>
+            
         `)
-    } else {
+    } else {        
         let images = ``
         for (let i = 0; i<apod?.image?.photos.length; i++) {
             images += `
             <img src="${apod?.image?.photos[i].img_src}"/>
-            <p>${apod?.image?.explanation}</p>
+            <p>ID: ${apod?.image?.photos[i].id}</p>
+            <p>Date: ${apod?.image?.photos[i].earth_date}</p>
+            <p>Rover: ${apod?.image?.photos[i].rover.name}</p>
         `
         }
         return (images)
@@ -96,8 +103,7 @@ const ImageOfTheDay = (apod) => {
 // Example API call
 const getImageOfTheDay = (state) => {
     let { apod } = state
-    const rover = "curiosity"
-
+    let rover = state
     fetch(`http://localhost:3000/apod?rover=` + rover)
         .then(res => res.json())
         .then(apod => updateStore(store, { apod }))
