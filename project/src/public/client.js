@@ -86,18 +86,22 @@ const ImageOfTheDay = (apod) => {
             <p>Sorry we do not support videos</p>
             
         `)
-    } else {        
-        let images = ``
-        for (let i = 0; i<apod?.image?.photos.length; i++) {
-            images += `
-            <img src="${apod?.image?.photos[i].img_src}"/>
-            <p>ID: ${apod?.image?.photos[i].id}</p>
-            <p>Date: ${apod?.image?.photos[i].earth_date}</p>
-            <p>Rover: ${apod?.image?.photos[i].rover.name}</p>
-        `
-        }
-        return (images)
     }
+    else {   
+        function getPhotosFormat(funcArg){
+            return apod?.image?.photos?.reduce(funcArg)
+        }
+        //Higher order function
+        return getPhotosFormat(myFunc)
+    }
+}
+
+function myFunc(result, photo) {
+    return result += 
+    `<img src="${photo.img_src}"/>
+    <p>ID: ${photo.id}</p>
+    <p>Date: ${photo.earth_date}</p>
+    <p>Rover: ${photo.rover.name}</p>`
 }
 
 // ------------------------------------------------------  API CALLS
