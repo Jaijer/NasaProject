@@ -88,12 +88,12 @@ const ImageOfTheDay = (apod) => {
         `)
     }
     else {   
-        function getPhotosFormat(funcArg){
-            return apod?.image?.photos?.reduce(funcArg)
-        }
-        //Higher order function
-        return getPhotosFormat(myFunc)
+        if (typeof(apod?.image?.photos) == "undefined") {
+            return ""
+        } else {
+        return getArray(myFunc, apod?.image?.photos, 3)()
     }
+}
 }
 
 function myFunc(result, photo) {
@@ -103,6 +103,18 @@ function myFunc(result, photo) {
     <p>Date: ${photo.earth_date}</p>
     <p>Rover: ${photo.rover.name}</p>`
 }
+
+//Higher order function
+let getArray = function(funcArg, source, number) {
+    let newArray = []
+    for (let i =0; i<= number; i++) {
+        newArray.push(source[i])
+    }
+    return function() {
+        return newArray.reduce(funcArg)
+    }
+}
+
 
 // ------------------------------------------------------  API CALLS
 
