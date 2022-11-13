@@ -54,16 +54,21 @@ window.addEventListener('load', () => {
 
 // ------------------------------------------------------  COMPONENTS
 
-// Pure function that renders conditional information -- THIS IS JUST AN EXAMPLE, you can delete it.
+// First high order function
 const Greeting = (name) => {
+    return sayHi(name)
+}
+
+const sayHi = function(name) {
     if (name) {
         return `
-            <h1>Welcome, ${name}!</h1>
+            <h1>Hi There, ${name}!</h1>
+            <h3 style="color:white">Have fun exploring the Universe...</h3>
         `
     }
 
     return `
-        <h1>Hello!</h1>
+        <h1>Great to see you here!</h1>
     `
 }
 
@@ -104,7 +109,7 @@ function myFunc(result, photo) {
     <p>Rover: ${photo.rover.name}</p>`
 }
 
-//Higher order function
+//Second High order function
 let getArray = function(funcArg, source, number) {
     let newArray = []
     for (let i =0; i<= number; i++) {
