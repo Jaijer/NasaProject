@@ -56,6 +56,7 @@ window.addEventListener('load', () => {
 
 // First high order function
 const Greeting = (name) => {
+    name = "Mr." + name
     return sayHi(name)
 }
 
