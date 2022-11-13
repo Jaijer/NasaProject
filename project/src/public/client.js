@@ -56,14 +56,14 @@ window.addEventListener('load', () => {
 
 // First high order function
 const Greeting = (name) => {
-    name = "Mr." + name
+    name = "Dear " + name
     return sayHi(name)
 }
 
 const sayHi = function(name) {
     if (name) {
         return `
-            <h1>Hi There, ${name}!</h1>
+            <h1>Hi, ${name}!</h1>
             <h3 style="color:white">Have fun exploring the Universe...</h3>
         `
     }
